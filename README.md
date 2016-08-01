@@ -10,6 +10,7 @@ Tristram
 - MikScrollingBattleText (5.7.145)
 - Tidy Plates (6.18.Beta9)
 - TellMeWhen (8.1.1)
+- Bagnon (7.0.3)
 
 ## License
 
