@@ -9,6 +9,7 @@ Tristram
 - Skada Damage Meter (1.4-35)
 - MikScrollingBattleText (5.7.145)
 - Tidy Plates (6.18.Beta9)
+- TellMeWhen (8.1.1)
 
 ## License
 
