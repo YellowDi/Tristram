@@ -1,0 +1,16 @@
+
+TidyPlatesWidgetData = {
+	["UnitLastSeen"] = {
+		["黄某某"] = 3864,
+	},
+	["UnitDescriptions"] = {
+	},
+	["UnitGuild"] = {
+		["黄某某"] = "血盟骑士团",
+	},
+	["CachedAuraDurations"] = {
+	},
+	["UnitClass"] = {
+		["黄某某"] = "MAGE",
+	},
+}

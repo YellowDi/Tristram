@@ -1,0 +1,58 @@
+VER 3 000000000000000A "Decursive" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/cast [@mouseover,nomod,exists] 净化灵魂;  [@mouseover,exists,mod:ctrl] 净化术; [@mouseover,exists,mod:shift] 妖术
+END
+VER 3 000000000000000C "MillHelper" "Ability_Miling"
+/click MillHelperButton
+END
+VER 3 000000000000000B "刷" "INV_MISC_QUESTIONMARK"
+/cleartarget
+/tar 雷霆纳克
+/tar 重拳
+/tar 戈罗克
+/tar  鲁克胡克
+/tar 泥皮
+/tar 觅径者
+/说  草发现目标 [%T]
+END
+VER 3 0000000000000008 "加耐坐骑" "ABILITY_WARRIOR_RALLYINGCRY"
+#showtooltip
+/cast [target=player] 命令怒吼
+/use [nocombat,nomod,outdoors,swimming]天蓝水黾;[nocombat,outdoors,flyable]玛瑙云端翔龙;[nocombat,outdoors,noflyable]红宝石猎豹
+END
+VER 3 0000000000000004 "嗜血" "SPELL_NATURE_BLOODLUST"
+#showtooltip
+/targetenemy [noharm]
+/startattack
+/cast 嗜血
+/swapactionbar 1 2
+END
+VER 3 0000000000000006 "怒击第一发" "WARRIOR_WILD_STRIKE"
+#showtooltip
+/cast 怒击
+/swapactionbar 3 4
+END
+VER 3 0000000000000007 "怒击第二发" "WARRIOR_WILD_STRIKE"
+#showtooltip
+/cast 怒击
+/swapactionbar 4 1
+END
+VER 3 0000000000000003 "狂暴嗜血循环无脑宏" "SPELL_NATURE_BLOODLUST"
+#showtooltip 嗜血
+/castsequence reset=4 嗜血,狂风打击,狂风打击
+/cast 怒击
+/startattack
+END
+VER 3 0000000000000005 "狂风打击" "SPELL_WARRIOR_WILDSTRIKE"
+#showtooltip
+/cast 狂风打击
+/swapactionbar 2 3
+END
+VER 3 0000000000000009 "肉搏、冲锋、断筋、取消保护和取消" "ABILITY_WARRIOR_CHARGE"
+#showtooltip 
+/startattack 
+/cancelaura 剑刃风暴 
+/cancelaura 保护之手 
+/cast 冲锋 
+/cast 断筋
+END
