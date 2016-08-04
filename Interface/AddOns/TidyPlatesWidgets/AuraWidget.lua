@@ -1,3 +1,30 @@
+ --[[
+-- creates a Cooldown object over the player portrait
+local TestCooldown = CreateFrame("Cooldown", "TestCooldown", PlayerFrame, "TidyPlatesAuraWidgetCooldown")
+TestCooldown:SetAllPoints(PlayerPortrait)
+
+TestCooldown:SetReverse(true)
+TestCooldown:SetHideCountdownNumbers(false)
+
+-- /run TestCooldown:SetCooldown(GetTime(), 10)
+--TestCooldown:SetSwipeColor(0,0,0,1)
+--TestCooldown:SetDrawEdge(false)
+--TestCooldown:SetDrawBling(false)
+
+
+-- performs a complete cooldown "sweep" animation over 10 seconds
+/run TestCooldown:SetCooldown(GetTime(), 10)
+ 
+-- performs the same animation, starting halfway in (5 seconds)
+TestCooldown:SetCooldown(GetTime() - 5, 10)
+ 
+-- performs only the "flash" animation normally seen at the end of a cooldown
+TestCooldown:SetCooldown(0,0)
+--]]
+
+
+
+
 
 
 TidyPlatesWidgets.DebuffWidgetBuild = 2
@@ -90,7 +117,6 @@ local function DefaultFilterFunction(debuff)
 end
 
 
-
 -----------------------------------------------------
 -- General Events
 -----------------------------------------------------
@@ -101,11 +127,7 @@ local function EventUnitAura(unitid)
 
 	if unitid then frame = WidgetList[unitid] end
 
-	if frame then 
-		---print(unitid)
-		UpdateWidget(frame)
-		--UpdateIconGrid(frame, unitid)
-	end
+	if frame then UpdateWidget(frame) end
 
 end
 
@@ -118,16 +140,6 @@ end
 local AuraEvents = {
 	--["UNIT_TARGET"] = EventUnitTarget,
 	["UNIT_AURA"] = EventUnitAura,
-
---[[
-	["PLAYER_ENTERING_WORLD"] = EventPlayerEnterWorld,
-	["PLAYER_REGEN_ENABLED"] = CleanAuraLists,
-
-	["SPELL_UPDATE_USABLE"] = EventPlayerAbilityUpdated,
-	["SPELL_UPDATE_COOLDOWN"] = EventPlayerAbilityUpdated,
-	["SPELL_COOLDOWN_READY"] = EventPlayerAbilityUpdated,
-	["SPELL_COOLDOWN_STARTED"] = EventPlayerAbilityUpdated,
-	--]]
 }
 
 local function AuraEventHandler(frame, event, ...)
@@ -138,16 +150,7 @@ local function AuraEventHandler(frame, event, ...)
 		eventFunction(...)
 	end
 
-	--[[
-	if unitid == "target" then
-		UpdateAurasByUnitID("target")
-	end
-	--]]
 end
-
-
--- CallForWidgetUpdate(destGUID, raidicon, name)
-
 
 -------------------------------------------------------------
 -- Widget Object Functions
@@ -168,7 +171,7 @@ local function UpdateWidgetTime(frame, expiration)
 end
 
 
-local function UpdateIcon(frame, texture, expiration, stacks, r, g, b)
+local function UpdateIcon(frame, texture, duration, expiration, stacks, r, g, b)
 	if frame and texture and expiration then
 		-- Icon
 		frame.Icon:SetTexture(texture)
@@ -183,6 +186,11 @@ local function UpdateIcon(frame, texture, expiration, stacks, r, g, b)
 			frame.Highlight:Show()
 			frame.Border:Hide()
 		else frame.Highlight:Hide(); frame.Border:Show()	end
+
+		-- Cooldown
+		if duration and duration > 0 and expiration and expiration > 0 then
+			frame.Cooldown:SetCooldown(expiration-duration, duration+.25)
+		end
 
 		-- Expiration
 		UpdateWidgetTime(frame, expiration)
@@ -202,6 +210,11 @@ end
 
 local function UpdateIconGrid(frame, unitid)
 
+		if not unitid then return end
+
+		local unitReaction
+		if UnitIsFriend("player", unitid) then unitReaction = AURA_TARGET_FRIENDLY
+		else unitReaction = AURA_TARGET_HOSTILE end
 
 		local AuraIconFrames = frame.AuraIconFrames
 		local storedAuras = {}
@@ -229,15 +242,22 @@ local function UpdateIconGrid(frame, unitid)
 			
 				aura.name = name
 				aura.texture = icon
-				aura.count = stacks
-				aura.type = AuraType_Index[auraType]
+				aura.stacks = stacks
+				aura.type = auraType
+				aura.effect = auraFilter
 				aura.duration = duration
+				aura.reaction = unitReaction
 				aura.expiration = expiration
 				aura.caster = caster
 				aura.spellid = spellid
 				aura.unit = unitid 		-- unitid of the plate
+
+				--if name == "Gnaw" then print(name, _, icon, stacks, auraType, duration, expiration, caster, _, _, spellid) end
 			end
 			
+			-- Gnaw , false, icon, 0 stacks, nil type, duration 1, expiration 8850.436, caster pet, false, false, 91800
+
+
 
 			-- Auras are evaluated by an external function
 			-- Pre-filtering before the icon grid is populated
@@ -279,7 +299,9 @@ local function UpdateIconGrid(frame, unitid)
 				local aura = storedAuras[index]
 				if aura.spellid and aura.expiration then
 
-					UpdateIcon(AuraIconFrames[AuraSlotCount], aura.texture, aura.expiration, aura.stacks, aura.r, aura.g, aura.b)
+					-- Call function to display the aura
+					UpdateIcon(AuraIconFrames[AuraSlotCount], aura.texture, aura.duration, aura.expiration, aura.stacks, aura.r, aura.g, aura.b)
+					
 					AuraSlotCount = AuraSlotCount + 1
 					frame.currentAuraCount = index
 				end
@@ -317,7 +339,9 @@ local function UpdateWidgetContext(frame, unit)
 end
 
 local function ClearWidgetContext(frame)
-	WidgetList[frame.unitid] = nil
+	
+	-- fix me!
+	--WidgetList[frame.unitid] = nil
 end
 
 local function ExpireFunction(icon)
@@ -358,11 +382,18 @@ local function CreateWideAuraIconFrame(parent)
 	frame.unit = nil
 	frame.Parent = parent
 	frame:SetWidth(26.5); frame:SetHeight(14.5)
+	
 	-- Icon
 	frame.Icon = frame:CreateTexture(nil, "BACKGROUND")
 	frame.Icon:SetAllPoints(frame)
-	--frame.Icon:SetTexCoord(.07, 1-.07, .23, 1-.23)  -- obj:SetTexCoord(left,right,top,bottom)
 	frame.Icon:SetTexCoord(.07, 1-.07, .23, 1-.23)  -- obj:SetTexCoord(left,right,top,bottom)
+
+	--Spinning Cooldown Frame
+	frame.Cooldown = CreateFrame("Cooldown", nil, frame, "TidyPlatesAuraWidgetCooldown")
+	frame.Cooldown:SetAllPoints(frame)
+	frame.Cooldown:SetReverse(true)
+	frame.Cooldown:SetHideCountdownNumbers(true)
+
 	-- Border
 	frame.Border = frame:CreateTexture(nil, "ARTWORK")
 	frame.Border:SetWidth(32); frame.Border:SetHeight(32)
@@ -373,7 +404,7 @@ local function CreateWideAuraIconFrame(parent)
 	frame.Highlight:SetAllPoints(frame.Border)
 	frame.Highlight:SetTexture(WideHighlightArt)
 	--  Time Text
-	frame.TimeLeft = frame:CreateFontString(nil, "OVERLAY")
+	frame.TimeLeft = frame.Cooldown:CreateFontString(nil, "OVERLAY")
 	frame.TimeLeft:SetFont(AuraFont ,9, "OUTLINE")
 	frame.TimeLeft:SetShadowOffset(1, -1)
 	frame.TimeLeft:SetShadowColor(0,0,0,1)
@@ -382,7 +413,7 @@ local function CreateWideAuraIconFrame(parent)
 	frame.TimeLeft:SetHeight(16)
 	frame.TimeLeft:SetJustifyH("RIGHT")
 	--  Stacks
-	frame.Stacks = frame:CreateFontString(nil, "OVERLAY")
+	frame.Stacks = frame.Cooldown:CreateFontString(nil, "OVERLAY")
 	frame.Stacks:SetFont(AuraFont,10, "OUTLINE")
 	frame.Stacks:SetShadowOffset(1, -1)
 	frame.Stacks:SetShadowColor(0,0,0,1)
@@ -416,6 +447,13 @@ local function CreateSquareAuraIconFrame(parent)
 	frame.Icon = frame:CreateTexture(nil, "BACKGROUND")
 	frame.Icon:SetAllPoints(frame)
 	frame.Icon:SetTexCoord(.10, 1-.07, .12, 1-.12)  -- obj:SetTexCoord(left,right,top,bottom)
+
+	--Spinning Cooldown Frame
+	frame.Cooldown = CreateFrame("Cooldown", nil, frame, "TidyPlatesAuraWidgetCooldown")
+	frame.Cooldown:SetAllPoints(frame)
+	frame.Cooldown:SetReverse(true)
+	frame.Cooldown:SetHideCountdownNumbers(true)
+
 	-- Border
 	frame.Border = frame:CreateTexture(nil, "ARTWORK")
 	frame.Border:SetWidth(32); frame.Border:SetHeight(32)
@@ -426,7 +464,7 @@ local function CreateSquareAuraIconFrame(parent)
 	frame.Highlight:SetAllPoints(frame.Border)
 	frame.Highlight:SetTexture(SquareHighlightArt)
 	--  Time Text
-	frame.TimeLeft = frame:CreateFontString(nil, "OVERLAY")
+	frame.TimeLeft = frame.Cooldown:CreateFontString(nil, "OVERLAY")
 	frame.TimeLeft:SetFont(AuraFont ,9, "OUTLINE")
 	frame.TimeLeft:SetShadowOffset(1, -1)
 	frame.TimeLeft:SetShadowColor(0,0,0,1)
@@ -435,7 +473,7 @@ local function CreateSquareAuraIconFrame(parent)
 	frame.TimeLeft:SetHeight(16)
 	frame.TimeLeft:SetJustifyH("RIGHT")
 	--  Stacks
-	frame.Stacks = frame:CreateFontString(nil, "OVERLAY")
+	frame.Stacks = frame.Cooldown:CreateFontString(nil, "OVERLAY")
 	frame.Stacks:SetFont(AuraFont,10, "OUTLINE")
 	frame.Stacks:SetShadowOffset(1, -1)
 	frame.Stacks:SetShadowColor(0,0,0,1)

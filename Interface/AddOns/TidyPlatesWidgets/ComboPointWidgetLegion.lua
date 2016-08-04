@@ -7,12 +7,18 @@
 
 	- Proc Widget
 
+/run print(UnitAffectingCombat("target"))
+/run print(UnitCreatureFamily("target"), UnitCreatureType("target"))
 --]]
+local TidyPlatesComboWidgetFrame
+
 local comboWidgetPath = "Interface\\Addons\\TidyPlatesWidgets\\ComboWidget\\"
 local artpath = "Interface\\Addons\\TidyPlatesWidgets\\ComboWidget\\"
-local artfile = artpath.."PointArtLegion.tga"
+local artfile = artpath.."RogueMax8.tga"
 local grid = .0625
 local monkOffset = 10
+
+local maxComboPoints = 0
 
 local WidgetList = {}
 
@@ -99,22 +105,15 @@ local function UpdateWidgetFrame(frame)
 end
 
 -- Context
-local function UpdateWidgetContext(frame, unit)
-	local guid = unit.guid
+local function UpdateWidgetContext(plate, unit)
 
-	-- Add to Widget List
-	if guid then
-		if frame.guid then WidgetList[frame.guid] = nil end
-		frame.guid = guid
-		WidgetList[guid] = frame
+	local unitid = unit.unitid
+
+	if UnitExists("target") and unitid == "target" then
+		TidyPlatesComboWidgetFrame:SetParent(plate.widgetFrame)
 	end
 
-	-- Update Widget
-	if UnitGUID("target") == guid then
-		UpdateWidgetFrame(frame)
-	else
-		frame:_Hide()
-	end
+	--frame:_Hide()
 end
 
 local function ClearWidgetContext(frame)
@@ -125,34 +124,39 @@ local function ClearWidgetContext(frame)
 	end
 end
 
--- Watcher Frame
-local WatcherFrame = CreateFrame("Frame", nil, WorldFrame )
-local isEnabled = false
-WatcherFrame:RegisterEvent("UNIT_COMBO_POINTS")
-WatcherFrame:RegisterEvent("UNIT_POWER")
-WatcherFrame:RegisterEvent("UNIT_DISPLAYPOWER")
-WatcherFrame:RegisterEvent("UNIT_AURA")
-WatcherFrame:RegisterEvent("UNIT_FLAGS")
-
-local function WatcherFrameHandler(frame, event, unitid)
+local function OnEventHandler(frame, event, unitid)
 		local guid = UnitGUID("target")
+		local maxValue = UnitPowerMax("player" , 4)
+
+		--print(event, maxValue)
+
+--[[
+		if event == "UNIT_MAXPOWER" then
+			local maxValue = UnitPowerMax("player" , 4)
+			--print("UNIT_MAXPOWER")
+
+			if maxValue == 5 then
+
+			elseif maxValue == 6 then
+
+			elseif maxValue == 8 then
+
+			end
+		end
+
 		if UnitExists("target") then
 			local widget = WidgetList[guid]
 			if widget then UpdateWidgetFrame(widget) end				-- To update all, use: for guid, widget in pairs(WidgetList) do UpdateWidgetFrame(widget) end
 		end
-end
-
-local function EnableWatcherFrame(arg)
-	if arg then
-		WatcherFrame:SetScript("OnEvent", WatcherFrameHandler); isEnabled = true
-	else WatcherFrame:SetScript("OnEvent", nil); isEnabled = false end
+		--]]
 end
 
 -- Widget Creation
 local function CreateWidgetFrame(extended)
-	local parent = extended.widgetFrame
+	--local parent = extended.widgetFrame
+
 	-- Required Widget Code
-	local frame = CreateFrame("Frame", nil, parent)
+	local frame = CreateFrame("Frame", nil, WorldFrame)
 	frame:Hide()
 
 	-- Custom Code
@@ -165,18 +169,29 @@ local function CreateWidgetFrame(extended)
 	frame.Icon:SetWidth(64)
 
 	frame.Icon:SetTexture(artfile)
-	--frame.Icon:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", -2, -2)
-	--frame.Icon:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 2, 2)
-
-	-- End Custom Code
 
 	-- Required Widget Code
 	frame.UpdateContext = UpdateWidgetContext
 	frame.Update = UpdateWidgetFrame
 	frame._Hide = frame.Hide
 	frame.Hide = function() ClearWidgetContext(frame); frame:_Hide() end
-	if not isEnabled then EnableWatcherFrame(true) end
+
+	frame:SetScript("OnEvent", OnEventHandler)
+	frame:RegisterEvent("UNIT_MAXPOWER")
+	frame:RegisterEvent("UNIT_COMBO_POINTS")
+	frame:RegisterEvent("UNIT_POWER")
+	frame:RegisterEvent("UNIT_DISPLAYPOWER")
+	frame:RegisterEvent("UNIT_AURA")
+	frame:RegisterEvent("UNIT_FLAGS")
+
+	maxComboPoints = UnitPowerMax("player" , 4)		-- 4 is combo points
+
 	return frame
 end
+
+local function CreateComboPointWidget(...)
+	TidyPlatesComboWidgetFrame = TidyPlatesComboWidgetFrame or CreateWidgetFrame(...)
+end
+
 
 TidyPlatesWidgets.CreateComboPointWidget = CreateWidgetFrame
