@@ -1,0 +1,30 @@
+VER 3 0100000000000001 "兽王单体" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click 兽王单体
+END
+VER 3 0100000000000002 "兽王群体" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click 兽王群体
+END
+VER 3 0100000000000005 "单体" "INV_SPEAR_07"
+/castsequence [nochanneling]稳固射击
+/castsequence [nochanneling]reset=5 奇美拉射击,瞄准射击,瞄准射击
+/use [nochanneling]夺命射击
+/use [nochanneling]急速射击
+/targetenemy [noharm][dead]
+/console Sound_EnableErrorSpeech 0
+/script UIErrorsFrame:Hide()
+END
+VER 3 0100000000000004 "弹幕兽王" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click 弹幕兽王
+END
+VER 3 0100000000000006 "群体" "ABILITY_HUNTER_STEADYSHOT"
+/castsequence [nochanneling]稳固射击
+/castsequence [nochanneling]奇美拉射击,多重射击,多重射击
+/use [nochanneling]弹幕射击
+END
+VER 3 0100000000000003 "飞刃兽王" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click 飞刃兽王
+END

@@ -1,16 +1,20 @@
 
 SkadaDB = {
 	["profileKeys"] = {
+		["Capslock - 罗宁"] = "Default",
+		["Rolly - 罗宁"] = "Default",
+		["不是故意搞笑 - 罗宁"] = "Default",
 		["黄某某 - 罗宁"] = "Default",
+		["艾莉的冷笑话 - 罗宁"] = "Default",
 	},
 	["profiles"] = {
 		["Default"] = {
 			["windows"] = {
 				{
-					["y"] = -72.8403015136719,
-					["point"] = "LEFT",
+					["y"] = -8.64033508300781,
+					["point"] = "RIGHT",
 					["mode"] = "伤害",
-					["x"] = 40.4399642944336,
+					["x"] = -141.359985351563,
 				}, -- [1]
 			},
 			["icon"] = {

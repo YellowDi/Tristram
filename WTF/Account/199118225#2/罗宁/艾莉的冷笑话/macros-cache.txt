@@ -1,0 +1,28 @@
+VER 3 0100000000000005 " " "ABILITY_WARRIOR_CHARGE"
+#showtooltip 
+/stopcasting 
+/cancelAura 剑刃风暴 
+/cancelAura 保护之手 
+/use [mod,@focus,nodead,harm]冲锋;[mod,@focus,nodead,help][@mouseover,nodead,help][help]援护;冲锋 
+/startattack 
+/use 断筋
+END
+VER 3 0100000000000001 "嗜血" "SPELL_NATURE_BLOODLUST"
+#showtooltip
+/targetenemy [noharm]
+/startattack
+/cast 嗜血
+/swapactionbar 1 2
+END
+VER 3 0100000000000008 "武器战" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click 武器战
+END
+VER 3 0100000000000007 "狂暴战输出" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click 狂暴战输出
+END
+VER 3 0100000000000002 "狂暴输出" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click 狂暴输出
+END

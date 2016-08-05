@@ -1,0 +1,21 @@
+
+SkadaDB = {
+	["profileKeys"] = {
+		["Syllenaris - 奥蕾莉亚"] = "Default",
+		["Capslocks - 白银之手"] = "Default",
+		["Marcie - 奥蕾莉亚"] = "Default",
+		["Radioedit - 奥蕾莉亚"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+			["windows"] = {
+				{
+					["y"] = -121.799987792969,
+					["point"] = "RIGHT",
+					["mode"] = "伤害",
+					["x"] = -216.300415039063,
+				}, -- [1]
+			},
+		},
+	},
+}

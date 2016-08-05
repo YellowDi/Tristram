@@ -1,0 +1,6 @@
+VER 3 0100000000000001 "火法爆发" "INV_MISC_QUESTIONMARK"
+#showtooltip 燃烧
+/use 13
+/use 14
+/castsequence reset=10 能量符文,燃烧,炎爆术,火焰冲击,炎爆术,火焰冲击,炎爆术,烈焰飞舞,火焰冲击,炎爆术,火焰冲击,炎爆术,灼烧,炎爆术,灼烧,炎爆术,灼烧,炎爆术
+END

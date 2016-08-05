@@ -1,0 +1,68 @@
+
+Bagnon_Sets = {
+	["reagentColor"] = {
+	},
+	["gemColor"] = {
+	},
+	["global"] = {
+		["inventory"] = {
+			["y"] = 100,
+			["x"] = -50,
+			["point"] = "BOTTOMRIGHT",
+			["hiddenBags"] = {
+			},
+			["color"] = {
+			},
+			["borderColor"] = {
+			},
+		},
+		["vault"] = {
+			["color"] = {
+			},
+			["hiddenBags"] = {
+			},
+			["borderColor"] = {
+			},
+		},
+		["guild"] = {
+			["color"] = {
+			},
+			["hiddenBags"] = {
+			},
+			["borderColor"] = {
+			},
+		},
+		["bank"] = {
+			["color"] = {
+			},
+			["hiddenBags"] = {
+			},
+			["borderColor"] = {
+			},
+		},
+	},
+	["engineerColor"] = {
+	},
+	["refrigeColor"] = {
+	},
+	["mineColor"] = {
+	},
+	["inscribeColor"] = {
+	},
+	["players"] = {
+		["白银之手"] = {
+		},
+		["奥蕾莉亚"] = {
+		},
+	},
+	["enchantColor"] = {
+	},
+	["normalColor"] = {
+	},
+	["herbColor"] = {
+	},
+	["tackleColor"] = {
+	},
+	["leatherColor"] = {
+	},
+}

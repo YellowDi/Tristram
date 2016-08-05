@@ -1,0 +1,64 @@
+
+TellMeWhenDB = {
+	["profileKeys"] = {
+		["Syllenaris - 奥蕾莉亚"] = "Syllenaris - 奥蕾莉亚",
+		["Capslocks - 白银之手"] = "Capslocks - 白银之手",
+		["Marcie - 奥蕾莉亚"] = "Marcie - 奥蕾莉亚",
+		["Radioedit - 奥蕾莉亚"] = "Radioedit - 奥蕾莉亚",
+	},
+	["global"] = {
+		["TextLayouts"] = {
+			["icon1"] = {
+				{
+				}, -- [1]
+				{
+				}, -- [2]
+			},
+			["bar2"] = {
+				{
+				}, -- [1]
+				{
+				}, -- [2]
+			},
+		},
+	},
+	["Version"] = 81209,
+	["profiles"] = {
+		["Syllenaris - 奥蕾莉亚"] = {
+			["Locked"] = true,
+			["Version"] = 81209,
+			["Groups"] = {
+				{
+					["GUID"] = "TMW:group:1NemsV4c56Wv",
+				}, -- [1]
+			},
+		},
+		["Capslocks - 白银之手"] = {
+			["Locked"] = true,
+			["Version"] = 81101,
+			["Groups"] = {
+				{
+					["GUID"] = "TMW:group:1NeBKR0mtFBd",
+				}, -- [1]
+			},
+		},
+		["Marcie - 奥蕾莉亚"] = {
+			["Version"] = 81209,
+			["Groups"] = {
+				{
+					["GUID"] = "TMW:group:1NemthWIFh08",
+				}, -- [1]
+			},
+			["Locked"] = true,
+		},
+		["Radioedit - 奥蕾莉亚"] = {
+			["Locked"] = true,
+			["Version"] = 81101,
+			["Groups"] = {
+				{
+					["GUID"] = "TMW:group:1NeacnWyhfon",
+				}, -- [1]
+			},
+		},
+	},
+}
