@@ -7,7 +7,7 @@ Tristram
 - DBM-Core (7.0.1)
 - DBM-VPYike (6.2.4)
 - Skada Damage Meter (1.4-35)
-- MikScrollingBattleText (5.7.145)
+- MikScrollingBattleText (5.7.146)
 - Tidy Plates (6.18.Beta16)
 - TellMeWhen (8.1.2)
 - Master Plan (0.99)
