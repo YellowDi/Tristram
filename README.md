@@ -12,6 +12,7 @@ Tristram
 - TellMeWhen (8.1.2)
 - Master Plan (0.99)
 - ncShadow (1.0.4)
+- Combuctor (7.0.0)
 
 ## License
 
