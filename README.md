@@ -11,7 +11,6 @@ Tristram
 - Tidy Plates (6.18.Beta20)
 - TellMeWhen (8.1.2)
 - Master Plan (0.99)
-- Wholly (057)
 
 ## License
 
