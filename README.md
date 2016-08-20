@@ -3,8 +3,8 @@
 
 这是一个定制的暗黑3风格的《魔兽世界》的用户界面，不需要配置或设置,按原样直接开箱即用。这个用户界面目前处于测试阶段，有一些功能还没有。
 
-![](http://7xp63o.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-08-20%20%E4%B8%8A%E5%8D%882.16.37.png)
-![](http://7xp63o.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-08-20%20%E4%B8%8A%E5%8D%882.17.18.png)
+![SC1](http://7xp63o.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-08-20%20%E4%B8%8A%E5%8D%882.16.37.png)
+![SC2](http://7xp63o.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-08-20%20%E4%B8%8A%E5%8D%882.17.18.png)
 
 ## 聊天栏命令
 
