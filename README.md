@@ -1,4 +1,4 @@
-Tristram
+﻿Tristram
 ====
 
 这是一个定制的暗黑3风格的《魔兽世界》的用户界面，不需要配置或设置,按原样直接开箱即用。这个用户界面目前处于测试阶段，有一些功能还没有。
@@ -20,7 +20,7 @@ Tristram
 DiabolicUI|r20160724163717|暗黑3 界面
 Deadly Boss Mods|7.0.2|火墙火墙火墙
 DBM-VPYike|6.2.4|夏一可 DBM 语音包
-Skada Damage Meter| 1.5-1|模块化伤害统计
+Skada Damage Meter|1.5-4|模块化伤害统计
 MikScrollingBattleText| 5.7.146|滚动战斗信息
 Tidy Plates|6.18.Beta20|强大美观的姓名版
 TellMeWhen|8.1.2|技能监控
