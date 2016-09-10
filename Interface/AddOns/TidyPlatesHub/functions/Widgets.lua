@@ -134,6 +134,7 @@ local function SmartFilterMode(aura)
 		end
 	end
 
+
 	-- Evaluate for further filtering
 	local prefix, priority = GetPrefixPriority(aura)
 	-- If the aura is mentioned in the list, evaluate the instruction...
@@ -142,13 +143,13 @@ local function SmartFilterMode(aura)
 
 		--print(aura.name, show, prefix, priority)
 		if show == true then
-			return true, 20 + (priority or 0), r, g, b
+			return true, 20 + (priority or 0)		-- , r, g, b
 		else
 			return false
 		end
 	--- When no prefix is mentioned, return the aura.
 	else
-		return ShowThisAura, 20, r, g, b
+		return ShowThisAura, 20		-- , r, g, b
 	end
 
 end
@@ -175,16 +176,16 @@ local DispelTypeHandlers = {
 	end,
 	}
 
-local function TrackDispelType(auratype)
-	if auratype then
-		local handlerfunction = DispelTypeHandlers[auratype]
+local function TrackDispelType(dispelType)
+	if dispelType then
+		local handlerfunction = DispelTypeHandlers[dispelType]
 		if handlerfunction then return handlerfunction() end
 	end
 end
 
 local function DebuffFilter(aura)
 	if LocalVars.WidgetAuraTrackDispelFriendly and aura.reaction == AURA_TARGET_FRIENDLY then
-		if TrackDispelType(aura.type) then
+		if aura.effect == "HARMFUL" and TrackDispelType(aura.type) then
 		local r, g, b = GetAuraColor(aura)
 		return true, 10, r, g, b end
 	end
@@ -333,9 +334,6 @@ local function OnInitializeWidgets(plate, configTable)
 		AddDebuffWidget(plate, LocalVars.WidgetsDebuff, configTable.DebuffWidgetPlus )
 	else AddDebuffWidget(plate, LocalVars.WidgetsDebuff, configTable.DebuffWidget ) end
 
-	--testing HealerWidget
-	--plate.widgets.HealerWidget = CreateHealerWidget(plate)
-	--plate.widgets.HealerWidget:SetPoint("CENTER", -50, 2) --0, 0)
 
 	if LocalVars.WidgetsEnableExternal and TidyPlatesGlobal_OnInitialize then TidyPlatesGlobal_OnInitialize(plate) end
 end
@@ -354,7 +352,7 @@ local function OnUpdateDelegate(plate, unit)
 	local Widgets = plate.widgets
 	--if LocalVars.WidgetsRangeIndicator then Widgets.RangeWidget:Update(unit,RangeModeRef[LocalVars.RangeMode])  end
 	if (LocalVars.ClassEnemyIcon and unit.reaction ~= "FRIENDLY") or (LocalVars.ClassPartyIcon and unit.reaction == "FRIENDLY") then Widgets.ClassIcon:Update(unit, LocalVars.ClassPartyIcon) end
-	if LocalVars.WidgetsTotemIcon then Widgets.TotemIcon:Update(unit)  end
+	if LocalVars.WidgetsTotemIcon and Widgets.TotemIcon then Widgets.TotemIcon:Update(unit)  end
 	--if (LocalVars.WidgetsThreatIndicatorMode == 2) and LocalVars.WidgetsThreatIndicator then plate.widgets.ThreatWheelWidget:Update(unit) end 		-- Threat Wheel
 
 	if LocalVars.WidgetsEnableExternal and TidyPlatesGlobal_OnUpdate then TidyPlatesGlobal_OnUpdate(plate, unit) end

@@ -3,8 +3,8 @@ Tristram
 
 这是一个定制的暗黑3风格的《魔兽世界》的用户界面，不需要配置或设置,按原样直接开箱即用。这个用户界面目前处于测试阶段，有一些功能还没有。
 
-![SC1](https://github.com/YellowDi/Tristram/screenshot-1.jpg)
-![SC1](https://github.com/YellowDi/Tristram/screenshot-2.jpg)
+![SC1](https://github.com/YellowDi/Tristram/raw/master/screenshot-1.jpg)
+![SC1](https://github.com/YellowDi/Tristram/raw/master/screenshot-2.jpg)
 
 ## 聊天栏命令
 
@@ -19,12 +19,12 @@ Tristram
 -------|-------|-------
 DiabolicUI|r20160724163717|暗黑3 界面
 Deadly Boss Mods|7.0.4|火墙火墙火墙
-DBM-VPYike|6.2.4|夏一可 DBM 语音包
-Skada Damage Meter|1.5-4|模块化伤害统计
+DBM Voicepack Yike|7.0.1|夏一可 DBM 语音包
+Skada Damage Meter|1.5-8|模块化伤害统计
 MikScrollingBattleText| 5.7.146|滚动战斗信息
-Tidy Plates|6.18.Beta20|强大美观的姓名版
+Tidy Plates|6.18.3|强大美观的姓名版
 TellMeWhen|8.1.2|技能监控
-Master Plan|0.99|要塞任务助手
+Master Plan|0.101|要塞任务助手
 ncShadow|1.0.4|将你的界面打造出电影般的感觉，通过`/shadow [0-100]`可设定边角阴影透明度
 Combuctor|7.0.0|可以按照类型过滤的背包&银行整合插件，标签风格。可按任务物品，装备，消耗品、物品品质等分类查看，让你查询物品更直观方便。
 
