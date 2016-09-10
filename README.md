@@ -3,8 +3,8 @@ Tristram
 
 这是一个定制的暗黑3风格的《魔兽世界》的用户界面，不需要配置或设置,按原样直接开箱即用。这个用户界面目前处于测试阶段，有一些功能还没有。
 
-![SC1](https://github.com/YellowDi/Tristram/raw/master/screenshot-1.jpg)
-![SC1](https://github.com/YellowDi/Tristram/raw/master/screenshot-2.jpg)
+![screenshot-1](https://raw.githubusercontent.com/YellowDi/Tristram/master/screenshot-1.png)
+![screenshot-2](https://raw.githubusercontent.com/YellowDi/Tristram/master/screenshot-2.png)
 
 ## 聊天栏命令
 
