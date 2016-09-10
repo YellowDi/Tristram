@@ -1,10 +1,10 @@
-﻿Tristram
+Tristram
 ====
 
 这是一个定制的暗黑3风格的《魔兽世界》的用户界面，不需要配置或设置,按原样直接开箱即用。这个用户界面目前处于测试阶段，有一些功能还没有。
 
-![SC1](http://7xp63o.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-08-20%20%E4%B8%8A%E5%8D%882.16.37.png)
-![SC2](http://7xp63o.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-08-20%20%E4%B8%8A%E5%8D%882.17.18.png)
+![SC1](https://github.com/YellowDi/Tristram/screenshot-1.jpg)
+![SC1](https://github.com/YellowDi/Tristram/screenshot-2.jpg)
 
 ## 聊天栏命令
 
@@ -18,7 +18,7 @@
 插件|版本号|简介
 -------|-------|-------
 DiabolicUI|r20160724163717|暗黑3 界面
-Deadly Boss Mods|7.0.2|火墙火墙火墙
+Deadly Boss Mods|7.0.4|火墙火墙火墙
 DBM-VPYike|6.2.4|夏一可 DBM 语音包
 Skada Damage Meter|1.5-4|模块化伤害统计
 MikScrollingBattleText| 5.7.146|滚动战斗信息
